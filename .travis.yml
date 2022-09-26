@@ -12,23 +12,23 @@ addons:
 # https://github.com/rust-lang/cargo/pull/7579
 
 rust:
-- stable
-- "1.57.0"
-- nightly
+  - stable
+  - "1.64.0"
+  - nightly
 
 os:
-- linux
+  - linux
 
 script:
-- cargo build --verbose
-- cargo test --verbose
+  - cargo build --verbose
+  - cargo test --verbose
 
 after_success:
-- test "$TRAVIS_PULL_REQUEST" == "false" && test "$TRAVIS_BRANCH" == "master" && test
-  "$TRAVIS_RUST_VERSION" == "stable" && bash ci/github_pages.sh
+  - test "$TRAVIS_PULL_REQUEST" == "false" && test "$TRAVIS_BRANCH" == "master" && test
+    "$TRAVIS_RUST_VERSION" == "stable" && bash ci/github_pages.sh
 
 before_deploy:
-- bash ci/before_deploy.sh
+  - bash ci/before_deploy.sh
 
 deploy:
   provider: releases
